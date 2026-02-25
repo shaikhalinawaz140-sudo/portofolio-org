@@ -26,13 +26,14 @@ hamburger.addEventListener("click", function () {
   navlinks.classList.toggle("active");
  });
 // form input 
+
 document.addEventListener("DOMContentLoaded", function() {
-// for name
+
     const form = document.getElementById("cotactForm");
     
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
-    const messageInput = document.getElementById("messageInput");
+    const messageInput = document.getElementById("message");
 
     const nameError = document.getElementById("nameError");
     const emailError = document.getElementById("emailError");
@@ -40,49 +41,52 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const successMsg = document.getElementById("successMsg");
 
-// step 2 fom submit event
-form.addEventListener("submit", function(e){
-    e.preventDefault(); //page load na ho
+    form.addEventListener("submit", function(e){
+        e.preventDefault();
 
-    let isValid = true; //from k varible chike karo
-    nameError.textContent ="";
-    emailError.textContent="";
-    messageError.textContent="";
-    successMsg.textContent="";
+        let isValid = true;
 
-// step 3 validaton
-if(nameInput.value.trim() ===""){
-    nameError.textContent = "Name is required",
-    isValid = false;
-}    
-})
+        // Clear old messages
+        nameError.textContent = "";
+        emailError.textContent = "";
+        messageError.textContent = "";
+        successMsg.textContent = "";
 
-//step 4 Email validation
+        // Name validation
+        if(nameInput.value.trim() === ""){
+            nameError.textContent = "Name is required";
+            isValid = false;
+        }
 
-const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        // Email validation
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
 
-if(emailInput.value.trim()===""){
-    emailError.textContent ="Email is requird";
-    isValid = false;
-}
-else if(!emailPattern.test(emailInput.value.trim())){
-    emailError.textContent = "enter valid email";
-    isValid = false;
-}
+        if(emailInput.value.trim() === ""){
+            emailError.textContent = "Email is required";
+            isValid = false;
+        }
+        else if(!emailPattern.test(emailInput.value.trim())){
+            emailError.textContent = "Enter valid email";
+            isValid = false;
+        }
 
-//step 5 message validation
- if(messageInput.value.trim() === ""){
+        // Message validation
+        if(messageInput.value.trim() === ""){
             messageError.textContent = "Message is required";
             isValid = false;
         }
-if(messageInput.value.trim(). lenght <10){
-    messageError.textContent = "Message must be at least 10 characters";
-    isValid=false;
-}
-//step 6 final check
-if (isValid){
-    successMsg.textContent = "Form submitted successfully"
-    successMsg.classListadd("success");
-    form.reset();
-}
+        else if(messageInput.value.trim().length < 10){
+            messageError.textContent = "Message must be at least 10 characters";
+            isValid = false;
+        }
+
+        // Final check
+        if(isValid){
+            successMsg.textContent = "Form submitted successfully";
+            successMsg.classList.add("success");
+            form.reset();
+        }
+
+    });
+
 });
